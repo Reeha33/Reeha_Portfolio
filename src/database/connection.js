@@ -5,7 +5,8 @@ import config from "./config/config.mjs";
 let sequelize
 if (process.env.NODE_ENV === 'development') {
     sequelize = new Sequelize(config.development);
-
+}else{
+    sequelize= new Sequelize(config.production);
 }
 
 (async () => {
