@@ -1,5 +1,6 @@
 import Contact from "@/database/model/contact";
 import {createResponse} from "../../../../utills/response";
+import {sendEmail} from "@/database/sendEmail";
 
 
 export async function POST(req){
@@ -20,9 +21,20 @@ export async function POST(req){
           message,
           status: "pending",
       });
-    return createResponse({newContact, message :"Message Submitted Successfully"},200);
+
+    await sendEmail({
+        to: process.env.NEXT_PUBLIC_RECEIVER_EMAIL,
+        subject: "New Contact Form Submission",
+        html: `
+        <h3>New Contact Message</h3>
+        <p><strong>Name:</strong> ${firstname} ${lastname}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+    })
+    return createResponse({newContact, message :"Message and email Submitted Successfully"},200);
   } catch(error){
       return createResponse({error_code: "server_error", message: error.message})
-
   }
 }

@@ -138,7 +138,7 @@ const Contact = () => {
                 </div>
 
                 {/* Right Box - Show only on hover */}
-                {showContactInfo && (
+
                     <div className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col justify-center text-gray-200 w-full md:w-1/2 transition-all duration-300">
                         <h2 className="text-3xl font-bold text-green-400 mt-0">
                             Let&#39;s Contact Me
@@ -161,7 +161,7 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                )}
+
             </div>
         </section>
     );
