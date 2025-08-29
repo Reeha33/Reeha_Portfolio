@@ -5,7 +5,7 @@ export async function sendEmail ({to,cc=false, bcc=false,subject,html,replyTo} )
         throw new Error('To, subject, and html are required.');
     }
     try{
-         const transporter = transporter.createTransport({
+         const transporter = nodemailer.createTransport({
              host: process.env.NEXT_PUBLIC_SMTP_HOST,
              port: parseInt(process.env.NEXT_PUBLIC_SMTP_PORT, 10),
              secure: process.env.NEXT_PUBLIC_SMTP_SECURE === 'false',
